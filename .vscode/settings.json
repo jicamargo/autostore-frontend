@@ -1,0 +1,7 @@
+{
+  "tailwindCSS.showPixelEquivalents": true,
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.colorDecorators": false,
+  "tailwind-fold-rails.showTailwindImage": true,
+  "tailwind-fold-rails.autoFold": false
+}
