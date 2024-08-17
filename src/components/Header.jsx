@@ -3,7 +3,8 @@
 import { useState, useContext } from 'react';
 import { Bars3Icon, XMarkIcon,
   ArrowRightEndOnRectangleIcon,
-  ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/outline';
+  ArrowRightStartOnRectangleIcon,
+  CubeIcon } from '@heroicons/react/24/outline';
 import { AuthContext } from '../context/AuthContext';
 
 const Header = () => {
@@ -23,9 +24,9 @@ const Header = () => {
 
   return (
     <header className="bg-neutral-800 text-white w-full z-50">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center p-4">
-        <div className='flex flex-row justify-between'>
-          <button className="sm:hidden absolute left-6" onClick={toggleMenu}>
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center p-4 md:p-2">
+        <div className='flex flex-row justify-between py-2'>
+          <button className="sm:hidden absolute left-6 top-4 p-2 hover:underline hover:bg-orange-300 hover:text-orange-700  " onClick={toggleMenu}>
             {menuOpen ? (
               <XMarkIcon className="h-6 w-6" />
             ) : (
@@ -44,21 +45,28 @@ const Header = () => {
         </div>
         <nav className={`flex ${menuOpen ? 'block' : 'hidden'} sm:block`}>
           <ul className="flex flex-col sm:flex-row">
-            <li className="p-2">
-              <a href="/productos" className="hover:underline">Productos</a>
+            <li className="">
+              <a href="/productos" className="p-2 flex items-center hover:underline hover:bg-orange-300 hover:text-orange-700">
+                <div className='flex flex-col justify-center items-center'>
+                  <CubeIcon className="h-6 w-6" />
+                  <span className="text-sm">Productos</span>
+                </div>
+              </a>
             </li>
-            <li className="p-2">
+            <li className="">
                 {isAuthenticated ? (
-                  <div>
-                    <button onClick={handleLogout} className="flex items-center">
-                      <ArrowRightStartOnRectangleIcon className="h-5 w-5" />
-                      <span className="ml-2">Cerrar sesión</span>
-                    </button>
-                  </div>
+                  <button onClick={handleLogout} className="p-2 flex items-center hover:underline hover:bg-orange-300 hover:text-orange-700">
+                    <div className='flex flex-col justify-center items-center'>
+                      <ArrowRightStartOnRectangleIcon className="h-6 w-6" />
+                      <span className="text-sm">Cerrar sesión</span>
+                    </div>
+                  </button>
                 ) : (
-                  <a href="/login" className="flex items-center">
-                    <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
-                    <span className="ml-2">Iniciar sesión</span>
+                  <a href="/login" className="p-2 flex items-center hover:underline hover:bg-orange-300 hover:text-orange-700">
+                    <div className='flex flex-col justify-center items-center'>
+                      <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
+                      <span className="text-sm">Iniciar sesión</span>
+                    </div>
                   </a>
                 )}
               </li>
