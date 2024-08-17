@@ -1,9 +1,21 @@
 "use client";
 
-import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useState, useEffect } from 'react';
+import { Bars3Icon, XMarkIcon, ArrowRightEndOnRectangleIcon, ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/outline';
 
 const Header = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token); // Verifica si el token existe    
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Elimina el token al cerrar sesión
+    setIsAuthenticated(false);
+  };
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -11,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-800 text-white w-full">
+    <header className="bg-neutral-800 text-white w-full">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center p-4">
         <div className='flex flex-row justify-between'>
           <button className="sm:hidden absolute left-6" onClick={toggleMenu}>
@@ -34,8 +46,18 @@ const Header = () => {
               <a href="/mi-cuenta" className="hover:underline">Mi Cuenta</a>
             </li>
             <li className="p-2">
-              <a href="/login" className="hover:underline">Sign In/Sign Out</a>
-            </li>
+                {isAuthenticated ? (
+                  <button onClick={handleLogout} className="flex items-center">
+                    <ArrowRightStartOnRectangleIcon className="h-5 w-5" />
+                    <span className="ml-2">Sign Out</span>
+                  </button>
+                ) : (
+                  <a href="/login" className="flex items-center">
+                    <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
+                    <span className="ml-2">Sign In</span>
+                  </a>
+                )}
+              </li>
           </ul>
         </nav>
       </div>
