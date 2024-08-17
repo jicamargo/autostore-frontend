@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
+import { AuthContext } from '@/context/AuthContext';
 
 const LoginPage = () => {
+  
+  const { setIsAuthenticated, setUsername } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,8 +28,14 @@ const LoginPage = () => {
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem('token', data.token); // Guardar el token en localStorage
+      setIsAuthenticated(true);
+      setUsername(data.username);
+
       router.push('/productos'); // Redirigir a la página de productos
     } else {
+      localStorage.removeItem('token'); // Elimina algun rastro del token de localStorage
+      setIsAuthenticated(false);
+      setUsername('');
       setError('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
     }
   };
