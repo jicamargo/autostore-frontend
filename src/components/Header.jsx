@@ -49,12 +49,12 @@ const Header = () => {
                 {isAuthenticated ? (
                   <button onClick={handleLogout} className="flex items-center">
                     <ArrowRightStartOnRectangleIcon className="h-5 w-5" />
-                    <span className="ml-2">Sign Out</span>
+                    <span className="ml-2">Cerrar sesión</span>
                   </button>
                 ) : (
                   <a href="/login" className="flex items-center">
                     <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
-                    <span className="ml-2">Sign In</span>
+                    <span className="ml-2">Iniciar sesión</span>
                   </a>
                 )}
               </li>
