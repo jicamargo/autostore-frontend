@@ -1,7 +1,6 @@
 <br>
 <div align='center'>
-	<h1>AUTOSTORE</h1>
-  <h2>FRONT-END</h2>
+	<h1>AUTOSTORE<br>FRONT-END</h1>
 </div>
 <a name="readme-top"></a>
 
