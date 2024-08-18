@@ -3,6 +3,7 @@
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthContext } from '@/context/AuthContext';
+import { loginUser } from '@/utils/data-queries';
 
 const LoginPage = () => {
   
@@ -17,29 +18,22 @@ const LoginPage = () => {
     event.preventDefault();
     setError('');
 
-    const response = await fetch('http://localhost:3000/api/v1/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json', // Especifica que el contenido es JSON
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const data = await loginUser(email, password); // Usar la función importada
 
-    if (response.ok) {
-      const data = await response.json();
       localStorage.setItem('token', data.token); // Guardar el token en localStorage
       setIsAuthenticated(true);
       setUsername(data.username);
 
       router.push('/productos'); // Redirigir a la página de productos
-    } else {
-      localStorage.removeItem('token'); // Elimina algun rastro del token de localStorage
+    } catch (error) {
+      localStorage.removeItem('token'); // Elimina cualquier rastro del token de localStorage
       setIsAuthenticated(false);
       setUsername('');
-      setError('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+      setError(error.message); // Mostrar el mensaje de error
     }
   };
-
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-neutral-800">
       <form onSubmit={handleLogin} className="bg-white p-6 mx-4 rounded shadow-md w-full max-w-sm mb-28">

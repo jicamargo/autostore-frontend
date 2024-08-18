@@ -1,9 +1,30 @@
 // src/utils/data-queries.js
 
+// login de usuario
+export const loginUser = async (email, password) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const response = await fetch(`${apiUrl}/api/v1/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+  }
+
+  return await response.json();
+};
+
+
 // Función para obtener la lista de productos
 export const fetchProductos = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/v1/productos', {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${apiUrl}/api/v1/productos`, {
       method: 'GET',
     });
     if (!response.ok) {
@@ -20,7 +41,8 @@ export const fetchProductos = async () => {
 export const deleteProducto = async (id) => {
   const token = localStorage.getItem('token');
   try {
-    const response = await fetch(`http://localhost:3000/api/v1/productos/${id}`, {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${apiUrl}/api/v1/productos/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -46,7 +68,8 @@ export const createProducto = async ({ sku, nombre, descripcion, cantidad, preci
   const token = localStorage.getItem('token');
 
   try {
-    const response = await fetch('http://localhost:3000/api/v1/productos', {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${apiUrl}/api/v1/productos`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -79,7 +102,8 @@ export const createProducto = async ({ sku, nombre, descripcion, cantidad, preci
 export const fetchProductoById = async (id) => {
   const token = localStorage.getItem('token');
   try {
-    const response = await fetch(`http://localhost:3000/api/v1/productos/${id}`, {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${apiUrl}/api/v1/productos/${id}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -102,7 +126,8 @@ export const updateProducto = async (id, { sku, nombre, descripcion, cantidad, p
   const token = localStorage.getItem('token');
 
   try {
-    const response = await fetch(`http://localhost:3000/api/v1/productos/${id}`, {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${apiUrl}/api/v1/productos/${id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
