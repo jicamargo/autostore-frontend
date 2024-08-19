@@ -12,7 +12,7 @@
   - [🚀 Live Demo](#live-demo)
   - [📽️ Video presentation](#video-demo)
 - [💻 Getting Started](#getting-started)
-- [🛠 Testing the app](#testing)
+- [🧪 Testing the app](#testing)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
