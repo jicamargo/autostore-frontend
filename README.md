@@ -12,6 +12,7 @@
   - [🚀 Live Demo](#live-demo)
   - [📽️ Video presentation](#video-demo)
 - [💻 Getting Started](#getting-started)
+- [🛠 Testing the app](#testing)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -97,6 +98,37 @@ Si no estas registrado, solo podrás ver los productos, para agregar, editar o e
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- TESTS -->
+
+## 🧪 Tests <a name="testing"></a>
+
+### Configuración de Pruebas
+
+Este proyecto utiliza Jest y React Testing Library para las pruebas unitarias. Las pruebas están diseñadas para verificar la funcionalidad de los componentes
+
+### Ejecutar Pruebas
+
+Para ejecutar las pruebas unitarias, sigue estos pasos:
+
+1. Asegúrate de haber instalado las dependencias de desarrollo:
+
+   ```bash
+   npm install
+   o
+   pnpm install
+    ```
+2. Ejecuta las pruebas:
+
+   ```bash
+   npm run test
+   o
+   pnpm test
+   ```
+3. Revisa los resultados en la consola para asegurarte de que todas las pruebas pasen correctamente.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- AUTHORS -->
 
