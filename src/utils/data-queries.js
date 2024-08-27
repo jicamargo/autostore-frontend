@@ -112,10 +112,19 @@ export const fetchProductoById = async (id) => {
     });
 
     if (!response.ok) {
-      throw new Error('Error al obtener los detalles del producto');
+      console.log(response.status);
+      if (response.status === 401) {
+        throw new Error('No estas autorizado para realizar esta acción');
+      }
+      else if (response.status === 404) {
+        throw new Error('Producto no encontrado');
+      }
+      else {
+        throw new Error('Error al obtener los detalles del producto');
+      }
     }
 
-    return response.json(); // Devuelve los detalles del producto en formato JSON
+    return { success: true, data: response.json() };
   } catch (error) {
     throw error;
   }

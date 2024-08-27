@@ -18,14 +18,24 @@ const EditarProductoPage = () => {
   useEffect(() => {
     const loadProducto = async () => {
       try {
-        const producto = await fetchProductoById(id);
-        setSku(producto.sku);
-        setNombre(producto.nombre);
-        setDescripcion(producto.descripcion);
-        setCantidad(producto.cantidad);
-        setPrecio(producto.precio);
+        const result = await fetchProductoById(id);
+        if (result.success) {
+          const producto = await result.data;
+          console.log(producto);
+          setSku(producto.sku);
+          setNombre(producto.nombre);
+          setDescripcion(producto.descripcion);
+          setCantidad(producto.cantidad);
+          setPrecio(producto.precio);
+        }
+        else {
+          console.log("que paso");
+          setFlashMessage({ message: result.message, type: 'error' });
+          router.push('/productos');
+        }
+        
       } catch (error) {
-        setFlashMessage({ message: 'Error al cargar el producto', type: 'error' });
+        setFlashMessage({ message: error.message, type: 'error' });
         router.push('/productos');
       }
     };
