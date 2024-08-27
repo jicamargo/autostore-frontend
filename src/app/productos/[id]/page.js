@@ -21,7 +21,6 @@ const EditarProductoPage = () => {
         const result = await fetchProductoById(id);
         if (result.success) {
           const producto = await result.data;
-          console.log(producto);
           setSku(producto.sku);
           setNombre(producto.nombre);
           setDescripcion(producto.descripcion);
@@ -29,7 +28,6 @@ const EditarProductoPage = () => {
           setPrecio(producto.precio);
         }
         else {
-          console.log("que paso");
           setFlashMessage({ message: result.message, type: 'error' });
           router.push('/productos');
         }

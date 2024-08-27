@@ -112,7 +112,6 @@ export const fetchProductoById = async (id) => {
     });
 
     if (!response.ok) {
-      console.log(response.status);
       if (response.status === 401) {
         throw new Error('No estas autorizado para realizar esta acción');
       }
